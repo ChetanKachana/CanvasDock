@@ -2,7 +2,14 @@
 
 ## Description
 
-This script fetches course and assignment data from the Canvas Learning Management System API. It retrieves all courses accessible with the provided API token and then lists all assignments for each of those courses, including details like due dates and points possible.
+This script fetches course and assignment data from the Canvas Learning Management System API.
+It focuses on **courses that you have marked as "Favorite"** in Canvas.
+For each of these favorite courses, it retrieves their assignments.
+
+The script then processes these assignments to:
+- Only include **upcoming assignments** (i.e., assignments where the `due_at` date is present and not in the past).
+- Sort these upcoming assignments by their due date.
+- Display details for each upcoming assignment, including its name, due date, and points possible.
 
 ## Prerequisites
 
@@ -60,4 +67,4 @@ Once the prerequisites are met, dependencies are installed, and environment vari
 python canvas_parser.py
 ```
 
-The script will output the list of courses and their corresponding assignments to the console.
+The script will output a list of your favorite courses and their corresponding upcoming, sorted assignments to the console.
