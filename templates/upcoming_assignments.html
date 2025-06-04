@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f4f4; color: #333; }
+        .container { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #333; }
+        h2 { color: #555; }
+        h2 a { color: #007bff; text-decoration: none; }
+        h2 a:hover { text-decoration: underline; }
+        .assignment { border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
+        .assignment:last-child { border-bottom: none; }
+        .assignment p { margin: 5px 0; }
+        .no-assignments { color: #777; font-style: italic; }
+        hr { border: 0; height: 1px; background: #ddd; margin-top: 20px; margin-bottom: 20px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ title }}</h1>
+
+        {% if assignments %}
+            {% for assignment in assignments %}
+            <div class="assignment">
+                <h2><a href="{{ assignment.html_url }}" target="_blank" rel="noopener noreferrer">{{ assignment.name }}</a></h2>
+                <p><strong>Due:</strong> {{ assignment.due_at_friendly }}</p>
+                <p><strong>Course:</strong> {{ assignment.course_name }}</p>
+                <p><strong>Points:</strong> {{ assignment.points_possible }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-assignments">
+                {% if message %}
+                    {{ message }}
+                {% else %}
+                    No upcoming assignments found for your favorite courses.
+                {% endif %}
+            </p>
+        {% endif %}
+    </div>
+</body>
+</html>
